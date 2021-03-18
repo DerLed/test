@@ -21,11 +21,13 @@ int main() {
                         string NEW;
                         vector <string> translation;
                         getline(cin, s);
+                        cout << s << "\n";
                         for (auto c : s)
                             {
-                                if ( c == ' ' && !buffer.empty() )
+                                if ( (c == ' ' && !buffer.empty()) || c == s[s.size()] )
                                    {
                                        translation.push_back(buffer);
+                                       cout << "Write buffer " << buffer << "\n";
                                        buffer.clear();
                                    }
                                 else if (c!=',' && c!='-' && c!=' ') 
@@ -33,11 +35,18 @@ int main() {
                                        buffer+=c;
                                    }
                              }
-                        for (int j = 1; j < translation.size(); j++)
+                        for (int j = 0; j < translation.size(); j++)
                             {
-                             dictionary.emplace(translation[j],translation[0]);
+                            cout << translation[j] << "\n";
+                            // dictionary.emplace(translation[j],translation[0]);
                             }
-                        
+                        translation.clear();
                     }   
+    
+     for (auto it = dictionary.begin(); it != dictionary.end(); ++it)///вывод на экран
+  {
+     cout << it->first << " : "<< it->second << endl;
+  }
+    
   return 0;
 }
