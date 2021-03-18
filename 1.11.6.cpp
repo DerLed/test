@@ -47,10 +47,42 @@ int main() {
                         translation.clear();
                     }   
     
-     for (auto it = dictionary.begin(); it != dictionary.end(); ++it)///вывод на экран
+ //    for (auto it = dictionary.begin(); it != dictionary.end(); ++it)///вывод на экран
+ // {
+ //    cout << it->first << " - "<< it->second << endl;
+ // }
+   cout << " ----------- " <<"\n"; 
+  for (auto now : dictionary)
   {
-     cout << it->first << " - "<< it->second << endl;
+        cout << now.first << " - ";
+       cout << now.second << "\n";
+        
+      
   }
+    
+     cout << " ----------- " <<"\n"; 
+ /*   
+    for (auto ch : dictionary)
+          {
+            pair <multimap<string,string>::iterator, multimap<string,string>::iterator> ret;//
+            ret = dictionary.equal_range(ch);
+            cout << ch << " =>";
+                for (multimap<string,string>::iterator it=ret.first; it!=ret.second; ++it)
+                    {
+                      std::cout << ' ' << it->second;
+                      std::cout << '\n';
+                    }
+          }
+  */
+    
+    
+    auto range = dictionary.equal_range("malum");
+ 
+    for (auto i = range.first; i != range.second; ++i)
+    {
+        std::cout << i->second << '\n';
+    }
+    
     
   return 0;
 }
