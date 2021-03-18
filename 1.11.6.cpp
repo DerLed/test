@@ -10,12 +10,12 @@ int main() {
     string buffer;
     int flag = 0;
     
-    map <string, vector <string>> dictionary;
+    multimap <string, string> dictionary;
    
     
     int N;
     cin >> N >> ws;
-   // cout << N;
+   
                     for ( int i =0; i<N; i++)
                     {
                         string NEW;
@@ -33,9 +33,10 @@ int main() {
                                        buffer+=c;
                                    }
                              }
-                        
-                        
-                        
+                        for (int j = 1; j < translation.size(); j++)
+                            {
+                             dictionary.emplace(translation[j],translation[0]);
+                            }
                         
                     }   
   return 0;
