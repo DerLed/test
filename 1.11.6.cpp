@@ -21,31 +21,35 @@ int main() {
                         string NEW;
                         vector <string> translation;
                         getline(cin, s);
-                        cout << s << "\n";
-                        for (auto c : s)
+                       // cout << s[s.size()-1] << "\n";
+                        for (int j = 0; j < s.size(); j++)
                             {
-                                if ( (c == ' ' && !buffer.empty()) || c == s[s.size()] )
+                               
+                            
+                                if (s[j] != ',' && s[j] !='-' && s[j] !=' ') 
+                                   {
+                                       buffer+=s[j];
+                                   }
+                            
+                                if ( (s[j] == ' ' && !buffer.empty()) || j == (s.size()-1) )
                                    {
                                        translation.push_back(buffer);
                                        cout << "Write buffer " << buffer << "\n";
                                        buffer.clear();
                                    }
-                                else if (c!=',' && c!='-' && c!=' ') 
-                                   {
-                                       buffer+=c;
-                                   }
+                                
                              }
-                        for (int j = 0; j < translation.size(); j++)
+                        for (int j = 1; j < translation.size(); j++)
                             {
                             cout << translation[j] << "\n";
-                            // dictionary.emplace(translation[j],translation[0]);
+                            dictionary.emplace(translation[j],translation[0]);
                             }
                         translation.clear();
                     }   
     
      for (auto it = dictionary.begin(); it != dictionary.end(); ++it)///вывод на экран
   {
-     cout << it->first << " : "<< it->second << endl;
+     cout << it->first << " - "<< it->second << endl;
   }
     
   return 0;
