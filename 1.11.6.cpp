@@ -9,8 +9,10 @@ int main() {
     string s;
     string buffer;
     string output;
+    string rest;
     string KEY;
     int flag = 0;
+    int count = 0;
     
     multimap <string, string> dictionary;
    
@@ -23,10 +25,9 @@ int main() {
                         string NEW;
                         vector <string> translation;
                         getline(cin, s);
+                        
                         for (int j = 0; j < s.size(); j++)
                             {
-                               
-                            
                                 if (s[j] != ',' && s[j] !='-' && s[j] !=' ') 
                                    {
                                        buffer+=s[j];
@@ -37,8 +38,8 @@ int main() {
                                        translation.push_back(buffer);
                                        buffer.clear();
                                    }
-                                
                              }
+                        
                         for (int j = 1; j < translation.size(); j++)
                             {
                                 dictionary.emplace(translation[j],translation[0]);
@@ -47,60 +48,63 @@ int main() {
                     }   
     
 
-
-    int count = 0;
-    int sss = 1;
-     for (auto it = dictionary.begin(); it != dictionary.end(); ++it)
-  {
-      
-    
-       if (sss == 1)
-       {
-           
-           KEY = it->first;
-           output = it->first + " - " + it->second;
-           count++;
-       }
-       //else if (it == dictionary.end())
-       else if (sss == dictionary.size()) // последний элемент
-       {
-         
-           if (KEY != it->first)
-             {
-                 cout << output << "\n";
-                 cout << it->first + " - " + it->second;
-             }
-           
-          else 
-             {
-                 output+=", " + it->second;
-                  cout << output << "\n";
-             }
-           
-           
-       
-       }  
-         
-       else  
-       {  
+    for (auto it = dictionary.begin(); it != dictionary.end(); ++it)
+        {
             
-         if (KEY != it->first)
-             {
-                 cout << output << "\n";
-                 output.clear();
-             
-                 KEY = it->first;
-                 output = it->first + " - " + it->second;
-             }
-           
-          else 
-             {
-                 output+=", " + it->second;
-             }
-           
-       }
+            if (rest == (it->first))  rest = it->first; 
+            else 
+                {
+                    count++;
+                    rest = it->first;
+                }  
+        }
+    
+    
+    cout << count << "\n";
+
+   
+     int sss = 1;
+     for (auto it = dictionary.begin(); it != dictionary.end(); ++it)
+          {
          
-       
+               if (sss == 1)
+                   {
+                       KEY = it->first;
+                       output = it->first + " - " + it->second;
+                   }
+
+               else if (sss == dictionary.size()) // последний элемент
+               {
+                   if (KEY != it->first)
+                     {
+                         cout << output << "\n";
+                         cout << it->first + " - " + it->second;
+                     }
+
+                   else 
+                     {
+                         output+=", " + it->second;
+                          cout << output << "\n";
+                     }
+               }  
+
+               else  
+               {  
+                 if (KEY != it->first)
+                     {
+                         cout << output << "\n";
+                         output.clear();
+
+                         KEY = it->first;
+                         output = it->first + " - " + it->second;
+                     }
+
+                  else 
+                     {
+                         output+=", " + it->second;
+                     }
+               }
+         
       sss++;  
       
   }
