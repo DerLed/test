@@ -49,10 +49,14 @@ int main() {
                         translation.clear();
                     }   
     
+     int qqq = 1;
      for (auto it = dictionary.begin(); it != dictionary.end(); ++it)///вывод на экран
  {
+    cout << "Step: " << qqq << "...";
     cout << it->first << " - "<< it->second << endl;
+    qqq++;
  }
+ cout <<"!!!!"<< dictionary.size() <<"\n"; 
    cout << " ----------- " <<"\n"; 
   for (auto now : dictionary)
   {
@@ -86,16 +90,23 @@ int main() {
     }
    */ 
     int count = 0;
+    int sss = 1;
      for (auto it = dictionary.begin(); it != dictionary.end(); ++it)
   {
-       if (it == dictionary.begin())
+      
+     // cout << "Step" << sss << "\n";
+       //if (it == dictionary.begin())
+       if (sss == 1)
        {
+           
            KEY = it->first;
            output = it->first + " - " + it->second;
            count++;
        }
-       else if (it == dictionary.end())
+       //else if (it == dictionary.end())
+       else if (sss == dictionary.size())
        {
+           cout << output << "\n";
            cout << it->first + " - " + it->second;
        }  
          
@@ -119,7 +130,7 @@ int main() {
        }
          
        
-        
+      sss++;  
       
   }
     
