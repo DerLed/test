@@ -8,6 +8,8 @@ using namespace std;
 int main() {
     string s;
     string buffer;
+    string output;
+    string KEY;
     int flag = 0;
     
     multimap <string, string> dictionary;
@@ -34,23 +36,23 @@ int main() {
                                 if ( (s[j] == ' ' && !buffer.empty()) || j == (s.size()-1) )
                                    {
                                        translation.push_back(buffer);
-                                       cout << "Write buffer " << buffer << "\n";
+                                      // cout << "Write buffer " << buffer << "\n";
                                        buffer.clear();
                                    }
                                 
                              }
                         for (int j = 1; j < translation.size(); j++)
                             {
-                            cout << translation[j] << "\n";
+                           // cout << translation[j] << "\n";
                             dictionary.emplace(translation[j],translation[0]);
                             }
                         translation.clear();
                     }   
     
- //    for (auto it = dictionary.begin(); it != dictionary.end(); ++it)///вывод на экран
- // {
- //    cout << it->first << " - "<< it->second << endl;
- // }
+     for (auto it = dictionary.begin(); it != dictionary.end(); ++it)///вывод на экран
+ {
+    cout << it->first << " - "<< it->second << endl;
+ }
    cout << " ----------- " <<"\n"; 
   for (auto now : dictionary)
   {
@@ -75,14 +77,51 @@ int main() {
           }
   */
     
-    
+  /*  
     auto range = dictionary.equal_range("malum");
  
     for (auto i = range.first; i != range.second; ++i)
     {
         std::cout << i->second << '\n';
     }
-    
+   */ 
+    int count = 0;
+     for (auto it = dictionary.begin(); it != dictionary.end(); ++it)
+  {
+       if (it == dictionary.begin())
+       {
+           KEY = it->first;
+           output = it->first + " - " + it->second;
+           count++;
+       }
+       else if (it == dictionary.end())
+       {
+           cout << it->first + " - " + it->second;
+       }  
+         
+       else  
+       {  
+            
+         if (KEY != it->first)
+             {
+                 cout << output << "\n";
+                 output.clear();
+             
+                 KEY = it->first;
+                 output = it->first + " - " + it->second;
+             }
+           
+          else 
+             {
+                 output+=", " + it->second;
+             }
+           
+       }
+         
+       
+        
+      
+  }
     
   return 0;
 }
