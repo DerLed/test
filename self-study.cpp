@@ -34,6 +34,14 @@ void fnD(int n, int k = 2)//task D
             if (k < n) fnD(n, k*2);
            
         }
+void fnD2(int n)
+    {
+        if(n > 1 && n % 2 != 0) std::cout << "NO";
+        if(n > 1 && n % 2 == 0) fnD2(n/2);
+        if(n==1) std::cout << "YES";
+        if(n==0) std::cout << "NO";
+    }
+
 
 int main() {
     int Aa = 5;
@@ -51,8 +59,9 @@ int main() {
     //add task C here
     
     std::cout <<"task D" << std::endl;
-    int Nd=36;
+    int Nd=7;
     fnD(Nd);
+    fnD2(Nd);
     
   return 0;
 }
