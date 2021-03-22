@@ -5,27 +5,35 @@
 #include <iostream>
 #include <vector>
 
-void fn(int a)//task A
+void fnA(int a)//task A
         {
-            if(a>1) fn(a-1);
+            if(a>1) fnA(a-1);
             std::cout << a; 
         }
 
-void fn2(int a, int b)//task B
+void fnB(int a, int b)//task B
     {
         if (a>b)
             {
                 std::cout << a;
-                fn2(a-1,b);
+                fnB(a-1,b);
             }
     
        if (a<b)
             {
                 std::cout << a;
-                fn2(a+1,b);
+                fnB(a+1,b);
             }
         if (a==b) std::cout << a;
     }
+
+void fnD(int n, int k = 2)//task D
+        {
+            if (k == n) std::cout << "YES";
+            if (k > n) std::cout << "NO";
+            if (k < n) fnD(n, k*2);
+           
+        }
 
 int main() {
     int Aa = 5;
@@ -34,11 +42,17 @@ int main() {
     int Bb = 15;
     
     std::cout <<"task A" << std::endl;
-    fn(Aa);
+    fnA(Aa);
     std::cout << std::endl;
     
     std::cout <<"task B" << std::endl;
-    fn2(Ab,Bb);
+    fnB(Ab,Bb);
+    std::cout << std::endl;
+    //add task C here
+    
+    std::cout <<"task D" << std::endl;
+    int Nd=36;
+    fnD(Nd);
     
   return 0;
 }
