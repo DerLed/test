@@ -2,27 +2,19 @@
 #include <vector>
 
 void queen (std::vector <std::vector <int>> &a, int stol = 0) {
-    
-            for (int i = 0; i < a.size(); i++) {
-                
-                if(stol == a.size()) {
-                        
+            
+                for (int i = 0; i < a.size(); i++) {
+                   std::cout << "[" << i << "]" << "[" << stol << "]" << " - " << a[i][stol] << std::endl;
+                    
                 }
-                if (a[i][stol] != 1) {
-                        set (a, i, stol);
-                        queen(a, stol+1)
-                }
-                
-                
-            }
-    
+            
 }
 
 
 void set (std::vector <std::vector <int>> &a, int x, int y) {  ///что бы получить доступ к массиву
     for (int i = 0; i < a.size(); i++) {                       ///и его изменить надо ставить & 
         for (int j = 0; j < a[i].size(); j++) {
-           if (x-y==i-j || x+y==i+j || x==i || y==j) 
+           if (x-y==i-j || x+y==i+j || x==i || y==j) ////!!!!!!!!!!
                 a[i][j] = 1;
         }
     }
@@ -41,8 +33,8 @@ int main() {
         }
         array.push_back(temp);
     }
-
-set (array, 3, 4);    
+/*
+//set (array, 3, 4);    
   
     for (int i = 0; i < array.size(); i++) {
         for (int j = 0; j < array[i].size(); j++) {
@@ -53,8 +45,7 @@ set (array, 3, 4);
    
    
     //std::cout << array[0].size();
-    
-queen(array);
- 
+ */   
+queen(array); 
   return 0;
 }
