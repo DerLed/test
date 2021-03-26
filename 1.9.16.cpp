@@ -1,24 +1,20 @@
 #include <iostream>
 #include <vector>
 
-void queen (std::vector <std::vector <int>> &a, int str = 0, int stol = 0, int count = 0) {
+void queen (std::vector <std::vector <int>> &a, int stol = 0) {
     
             for (int i = 0; i < a.size(); i++) {
-
+                
+                if(stol == a.size()) {
+                        
+                }
                 if (a[i][stol] != 1) {
-                        set (a);
-                        queen(a, )
+                        set (a, i, stol);
+                        queen(a, stol+1)
                 }
                 
                 
             }
-    
-    
-    
-    
-    
-    
-    
     
 }
 
