@@ -11,7 +11,7 @@
 
 #include <cstddef> // size_t
 
-//struct Substring;
+
 
 struct String {
 
@@ -19,7 +19,10 @@ struct String {
 
     String(const char* str = "") : size(strlen(str))
         , str(strcpy(new char[strlen(str) + 1], str))
-    {}
+    {
+        std::cout << "/////alloc STR " << &str << std::endl;
+        std::cout << "konstructor String " << this << std::endl;
+    }
 
     String(size_t n, char c) {
         this->str = new char[n + 1];
@@ -31,7 +34,10 @@ struct String {
     }
 
     ~String() {
+        std::cout << "/////delete " << &str << std::endl;
         delete[] str;
+        
+        std::cout << "destructor String " << this << std::endl;
     }
 
     String(const String& other) {
@@ -58,47 +64,35 @@ struct String {
     }
 
 
-   Proxystring operator[](int begin) {
-       /* char *m = new char[size - begin + 1];
-        for(int i = begin; i <= (size - begin+1); ++i) {
-            m[i-begin] = str[i];
-            //std::cout << m[i-begin] << std::endl;
-        }
-        */
-        //std::cout << m << std::endl;
-        //Proxystring t1 (str, begin);
-        //delete[] m;
+    Proxystring operator[] (int begin) const {
         return Proxystring (str, begin);
     }
 
     struct Proxystring {
-      // Proxystring(const String& string, int begin = 0) : size_p(string.size), str_p(string.str), begin_p(begin) {}
         
         Proxystring(const char* str = "", int begin = 0) : size_p(strlen(str))
         , str_p(strcpy(new char[strlen(str) + 1], str)), begin_p(begin)
-        {}
+        {
+            std::cout << "/////alloc PRX " << &str_p << std::endl;
+            std::cout << "konstructor Proxystring " << this << std::endl;
+        }
         
         String operator[](int end) {
-           // if (begin_p == end) return String();
             char *m = new char[end - begin_p + 1];
+            std::cout << "/////alloc M " << &m << std::endl;
             for(int i = begin_p; i < end; ++i) {
                 m[i-begin_p] = str_p[i];
-                std::cout << m[i-begin_p] << std::endl;
             }
-            
-            str_p = m;
-           // delete [] m;
-            std::cout << "str_p= "<< str_p << std::endl;
-            
-            /*
-            for(int i = 0; i < strlen(m)+1; ++i) {
-                if (m[i]== '\0') std::cout << "zaebis" << std::endl;
-                std::cout << "m["<< i << "]= "<< m[i] << std::endl;
-            }
-            */
-            
-            
-            return String(str_p);
+            //str_p = m;
+            std::cout << "/////delete STR " << &str_p << std::endl;
+            delete [] str_p;
+            return String(m);
+        }
+        
+        ~Proxystring() {
+           // std::cout << "/////delete " << &str_p << std::endl;
+        //delete[] str_p;
+        std::cout << "destructor Proxystring " << this << std::endl;
         }
         
         int begin_p;
@@ -116,26 +110,12 @@ struct String {
 
 
 int main() {
-    //std::cout << "djj" << std::endl;
-    String hello = "hello";
-    String * abc = new String("World");
-    //String::Proxystring hello1(hello);
-    
-    char* kuku = new char[5];
-    kuku[0] = 'k';
-    kuku[1] = 'i';
-    kuku[2] = 'k';
-    kuku[3] = 'i';
-    String::Proxystring hello2(kuku);
-    String::Proxystring hello3();
-    //hello3 = hello2;
-    //std::cout << hello.size << std::endl;
-    //std::cout << hello[2].str_p << std::endl;
-   // String const ell  = hello[1][4];
-    String const pusto  = hello[1][4];
-    //std::cout << ell.str << std::endl;
-    std::cout << pusto.str << std::endl;
-    std::cout << "konec" << std::endl;
+    String const hello("hello");
+    std::cout << hello.str << std::endl;
+   // String const hell = hello[0][4]; // теперь в hell хранится подстрока "hell"
+    //std::cout << hell.str << std::endl;
+    String const ell  = hello[1][4]; // теперь в ell хранится подстрока "ell"
+    std::cout << ell.str << std::endl;
     return 0;
 }
 
